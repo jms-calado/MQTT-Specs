@@ -1,5 +1,4 @@
----
-title: Carelink Device MQTT Specifications
+# Carelink Device MQTT Specifications
 ---
 
 **This document aims to define the specifications of the MQTT control packets
@@ -99,10 +98,8 @@ Publish Topics
 |--------|-------|
 | Retain | false |
 
-**(old)Payload (compressed JsonObject):**  
-"{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,  
-"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":  
-"x, y, z"}}"
+**(Single Status) Payload (compressed JsonObject):**  
+    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":"x, y, z"}}"
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
 |---------------|-------------|------------------------------------------------------------|------------|
@@ -119,9 +116,8 @@ Publish Topics
 | sensor        | json object | json object with the sensors available on the device       | false      |
 | accelerometer | string      | x, y, z axis acceleration values                           | false      |
 
-**Payload (compressed JsonObject):**  
-"{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":  
-[["lon","lat","alt"],…,["lon","lat","alt"]],"properties":[["hdop","vdop","pdop"],…,["hdop","vdop","pdop"]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[["x","y","z"],…,["x","y","z"]]}}"
+**(Multi Status) Payload (compressed JsonObject):**  
+    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[["lon","lat","alt"],…,["lon","lat","alt"]],"properties":[["hdop","vdop","pdop"],…,["hdop","vdop","pdop"]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[["x","y","z"],…,["x","y","z"]]}}"
 
 | *Name*        | *Type*         | *Description*                                        | *Required* |
 |---------------|----------------|------------------------------------------------------|------------|
@@ -149,10 +145,7 @@ Publish Topics
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-"{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,  
-"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x, y,
-z","heartrate":integer,  
-"temperature":integer}}"
+    "{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
 |---------------|-------------|------------------------------------------------------------|------------|
@@ -176,9 +169,7 @@ z","heartrate":integer,
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-"{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},  
-"batteryLevel":integer,"sensor":{"accelerometer":"x, y,
-z","heartrate":integer,"temperature":integer}}"
+    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
 |---------------|-------------|------------------------------------------------------------|------------|
@@ -201,10 +192,7 @@ z","heartrate":integer,"temperature":integer}}"
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-"{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,  
-"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x, y,
-z","heartrate":integer,  
-"temperature":integer}}"
+    "{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
 
 | *Name*        | *Type*      | *Description*                                                | *Required* |
 |---------------|-------------|--------------------------------------------------------------|------------|
@@ -228,9 +216,7 @@ z","heartrate":integer,
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-"{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":  
-integer,"sensor":{"accelerometer":"x, y,
-z","heartrate":integer,"temperature":integer}}"
+    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
 |---------------|-------------|------------------------------------------------------------|------------|
@@ -272,7 +258,7 @@ Subscribe Topics
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-"{"notification":"Wandering detected! Device: [deviceId];"}"
+    "{"notification":"Wandering detected! Device: [deviceId];"}"
 
 | *Name*       | *Type* | *Description*                                                                   | *Required* |
 |--------------|--------|---------------------------------------------------------------------------------|------------|
@@ -286,7 +272,7 @@ Subscribe Topics
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"bool"
+    "bool"
 
 | *Name* | *Type*  | *Description*                                                                                                       | *Required* |
 |--------|---------|---------------------------------------------------------------------------------------------------------------------|------------|
@@ -300,8 +286,7 @@ Subscribe Topics
 | Retain | true |
 
 **Payload (compressed GeoJson Feature Collection):**  
-"{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"home"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,
-lat]]]}}]}"
+    "{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"home"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}"
 
 | *Name* | *Type* | *Description*              | *Required* |
 |--------|--------|----------------------------|------------|
@@ -317,8 +302,7 @@ lat]]]}}]}"
 | Retain | true |
 
 **Payload (compressed GeoJson Feature Collection):**  
-"{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"regular1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,
-lat]]]}}]}"
+    "{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"regular1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}"
 
 | *Name* | *Type* | *Description*                 | *Required* |
 |--------|--------|-------------------------------|------------|
@@ -334,8 +318,7 @@ lat]]]}}]}"
 | Retain | true |
 
 **Payload (compressed GeoJson Feature Collection):**  
-"{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"dangerous1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,
-lat]]]}}]}"
+    "{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"dangerous1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}"
 
 | *Name* | *Type* | *Description*                   | *Required* |
 |--------|--------|---------------------------------|------------|
@@ -351,7 +334,7 @@ lat]]]}}]}"
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}"
+    "{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}"
 
 | *Name* | *Type*  | *Description*                               | *Required* |
 |--------|---------|---------------------------------------------|------------|
@@ -366,7 +349,7 @@ lat]]]}}]}"
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"frequency":integer,"persistence":integer,"volume":integer}"
+    "{"frequency":integer,"persistence":integer,"volume":integer}"
 
 | *Name*      | *Type*  | *Description*                                          | *Required* |
 |-------------|---------|--------------------------------------------------------|------------|
@@ -382,7 +365,7 @@ lat]]]}}]}"
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"ssid":"wifi name","wlanpw":"wifi password"}"
+    "{"ssid":"wifi name","wlanpw":"wifi password"}"
 
 | *Name* | *Type* | *Description*                               | *Required* |
 |--------|--------|---------------------------------------------|------------|
@@ -397,7 +380,7 @@ lat]]]}}]}"
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"apn":"telecom apn","band":integer}"
+    "{"apn":"telecom apn","band":integer}"
 
 | *Name* | *Type*  | *Description*                | *Required* |
 |--------|---------|------------------------------|------------|
@@ -414,7 +397,7 @@ TO-DO:
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"a":"a","b":integer}"
+    "{"a":"a","b":integer}"
 
 | *Name* | *Type*  | *Description* | *Required* |
 |--------|---------|---------------|------------|
@@ -429,7 +412,7 @@ TO-DO:
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"a":"a","b":integer}"
+    "{"a":"a","b":integer}"
 
 | *Name* | *Type*  | *Description* | *Required* |
 |--------|---------|---------------|------------|
@@ -444,7 +427,7 @@ TO-DO:
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"a":"a","b":integer}"
+    "{"a":"a","b":integer}"
 
 | *Name* | *Type*  | *Description* | *Required* |
 |--------|---------|---------------|------------|
@@ -459,7 +442,7 @@ TO-DO:
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"a":"a","b":integer}"
+    "{"a":"a","b":integer}"
 
 | *Name* | *Type*  | *Description* | *Required* |
 |--------|---------|---------------|------------|
@@ -474,7 +457,7 @@ TO-DO:
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-"{"a":"a","b":integer}"
+    "{"a":"a","b":integer}"
 
 | *Name* | *Type*  | *Description* | *Required* |
 |--------|---------|---------------|------------|

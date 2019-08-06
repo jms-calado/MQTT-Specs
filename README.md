@@ -1,5 +1,4 @@
 # Carelink Device MQTT Specifications
----
 
 **This document aims to define the specifications of the MQTT control packets
 ("connect", "publish" and "subscribe"), to be used by the Carelink devices.**
@@ -12,6 +11,8 @@ features across different devices.
 *Autor*: Jorge Calado (jsc\@uninova.pt)
 
 *Document version*: 3.1.0 – 2019-08-06
+
+---
 
 Standards and nomenclature used
 -------------------------------

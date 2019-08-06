@@ -77,7 +77,7 @@ MQTT Messages Sequence Diagrams
 
 (For supported devices only)
 
-![MQTT Messages Sequence Diagrams Fall-Wandering](Fall-Wandering.png)
+![MQTT Messages Sequence Diagrams Fall-Wandering](FallWandering.png)
 
 Publish Topics
 ==============

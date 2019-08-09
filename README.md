@@ -101,7 +101,7 @@ Publish Topics
 
 **(Single Status) Payload (compressed JsonObject):**  
 ```
-    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":"x, y, z"}}"
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":"x, y, z"}}
 ```
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
@@ -121,7 +121,7 @@ Publish Topics
 
 **(Multi Status) Payload (compressed JsonObject):**  
 ```
-    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[["lon","lat","alt"],…,["lon","lat","alt"]],"properties":[["hdop","vdop","pdop"],…,["hdop","vdop","pdop"]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[["x","y","z"],…,["x","y","z"]]}}"
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[["lon","lat","alt"],…,["lon","lat","alt"]],"properties":[["hdop","vdop","pdop"],…,["hdop","vdop","pdop"]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[["x","y","z"],…,["x","y","z"]]}}
 ```
 
 | *Name*        | *Type*         | *Description*                                        | *Required* |
@@ -151,7 +151,7 @@ Publish Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
+{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
@@ -177,7 +177,7 @@ Publish Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
@@ -202,7 +202,7 @@ Publish Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
+{"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
 | *Name*        | *Type*      | *Description*                                                | *Required* |
@@ -228,7 +228,7 @@ Publish Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}"
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
@@ -272,7 +272,7 @@ Subscribe Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"notification":"Wandering detected! Device: [deviceId];"}"
+{"notification":"Wandering detected! Device: [deviceId];"}
 ```
 
 | *Name*       | *Type* | *Description*                                                                   | *Required* |
@@ -288,7 +288,7 @@ Subscribe Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "bool"
+bool
 ```
 
 | *Name* | *Type*  | *Description*                                                                                                       | *Required* |
@@ -304,7 +304,7 @@ Subscribe Topics
 
 **Payload (compressed GeoJson Feature Collection):**
 ```
-    "{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"home"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}"
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"home"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}
 ```
 
 | *Name* | *Type* | *Description*              | *Required* |
@@ -322,7 +322,7 @@ Subscribe Topics
 
 **Payload (compressed GeoJson Feature Collection):**  
 ```
-    "{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"regular1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}"
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"regular1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}
 ```
 
 | *Name* | *Type* | *Description*                 | *Required* |
@@ -340,7 +340,7 @@ Subscribe Topics
 
 **Payload (compressed GeoJson Feature Collection):**  
 ```
-    "{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"dangerous1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}"
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"dangerous1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}
 ```
 
 | *Name* | *Type* | *Description*                   | *Required* |
@@ -358,7 +358,7 @@ Subscribe Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}"
+{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}
 ```
 
 | *Name* | *Type*  | *Description*                               | *Required* |
@@ -375,7 +375,7 @@ Subscribe Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"frequency":integer,"persistence":integer,"volume":integer}"
+{"frequency":integer,"persistence":integer,"volume":integer}
 ```
 
 | *Name*      | *Type*  | *Description*                                          | *Required* |
@@ -393,7 +393,7 @@ Subscribe Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"ssid":"wifi name","wlanpw":"wifi password"}"
+{"ssid":"wifi name","wlanpw":"wifi password"}
 ```
 
 | *Name* | *Type* | *Description*                               | *Required* |
@@ -410,7 +410,7 @@ Subscribe Topics
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"apn":"telecom apn","band":integer}"
+{"apn":"telecom apn","band":integer}
 ```
 
 | *Name* | *Type*  | *Description*                | *Required* |
@@ -429,7 +429,7 @@ TO-DO:
 
 **Payload (compressed JsonObject):**  
 ```
-    "{"a":"a","b":integer}"
+{"a":"a","b":integer}
 ```
 
 | *Name* | *Type*  | *Description* | *Required* |
@@ -446,7 +446,7 @@ TO-DO:
 
 **Payload (compressed JsonObject):**
 ```
-    "{"a":"a","b":integer}"
+{"a":"a","b":integer}
 ```
 
 | *Name* | *Type*  | *Description* | *Required* |
@@ -463,7 +463,7 @@ TO-DO:
 
 **Payload (compressed JsonObject):**
 ```
-    "{"a":"a","b":integer}"
+{"a":"a","b":integer}
 ```
 
 | *Name* | *Type*  | *Description* | *Required* |
@@ -480,7 +480,7 @@ TO-DO:
 
 **Payload (compressed JsonObject):**
 ```  
-    "{"a":"a","b":integer}"
+{"a":"a","b":integer}
 ```
 
 | *Name* | *Type*  | *Description* | *Required* |
@@ -497,7 +497,7 @@ TO-DO:
 
 **Payload (compressed JsonObject):**
 ```
-    "{"a":"a","b":integer}"
+{"a":"a","b":integer}
 ```
 
 | *Name* | *Type*  | *Description* | *Required* |

@@ -84,15 +84,15 @@ Publish Topics
 
 >   *"[deviceId]/status"*
 
->   *"[deviceId]/fall/confirmation"\**
+>   *"[deviceId]/fall/confirmation"***\***
 
->   *"[deviceId]/fall/detected"\**
+>   *"[deviceId]/fall/detected"***\***
 
->   *"[deviceId]/wandering/confirmation"\**
+>   *"[deviceId]/wandering/confirmation"***\***
 
->   *"[deviceId]/wandering/detected"\**
+>   *"[deviceId]/wandering/detected"***\***
 
-\**For supported devices only*
+**\****For supported devices only*
 
 "[deviceId]/status"
 --------------------
@@ -255,17 +255,17 @@ Subscribe Topics
 
 >   *"[deviceId]/configuration/[component]"*
 
->   *"[deviceId]/configuration/notifications"\**
+>   *"[deviceId]/configuration/notifications"***\***
 
->   *"[deviceId]/wandering/notification"\**
+>   *"[deviceId]/wandering/notification"***\***
 
->   *"[deviceId]/zones/home"\**
+>   *"[deviceId]/zones/home"***\***
 
->   *"[deviceId]/zones/regular"\**
+>   *"[deviceId]/zones/regular"***\***
 
->   *"[deviceId]/zones/dangerous"\**
+>   *"[deviceId]/zones/dangerous"***\***
 
-\**For supported devices only*
+**\****For supported devices only*
 
 "[deviceId]/active"
 --------------------

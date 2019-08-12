@@ -75,7 +75,7 @@ MQTT Messages Sequence Diagrams
 
 ### Fall/Wandering
 
-(For supported devices only)
+(For supported devices only, i.e. Smartphones)
 
 ![MQTT Messages Sequence Diagrams Fall-Wandering](FallWandering.png)
 
@@ -84,13 +84,15 @@ Publish Topics
 
 >   *"[deviceId]/status"*
 
->   *"[deviceId]/fall/confirmation"*
+>   *"[deviceId]/fall/confirmation"\**
 
->   *"[deviceId]/fall/detected"*
+>   *"[deviceId]/fall/detected"\**
 
->   *"[deviceId]/wandering/confirmation"*
+>   *"[deviceId]/wandering/confirmation"\**
 
->   *"[deviceId]/wandering/detected"*
+>   *"[deviceId]/wandering/detected"\**
+
+\**For supported devices only*
 
 "[deviceId]/status"
 --------------------
@@ -247,37 +249,23 @@ Publish Topics
 Subscribe Topics
 ================
 
->   *"[deviceId]/wandering/notification"*
-
 >   *"[deviceId]/active"*
-
->   *"[deviceId]/zones/home"*
-
->   *"[deviceId]/zones/regular"*
-
->   *"[deviceId]/zones/dangerous"*
 
 >   *"[deviceId]/configuration/energyProfile"*
 
->   *"[deviceId]/configuration/notifications"*
-
 >   *"[deviceId]/configuration/[component]"*
 
-"[deviceId]/wandering/notification"
-------------------------------------
+>   *"[deviceId]/configuration/notifications"\**
 
-| QoS    | 2     |
-|--------|-------|
-| Retain | false |
+>   *"[deviceId]/wandering/notification"\**
 
-**Payload (compressed JsonObject):**  
-```
-{"notification":"Wandering detected! Device: [deviceId];"}
-```
+>   *"[deviceId]/zones/home"\**
 
-| *Name*       | *Type* | *Description*                                                                   | *Required* |
-|--------------|--------|---------------------------------------------------------------------------------|------------|
-| notification | string | notification of detected wandering event, of user wearing the device [deviceId] | true       |
+>   *"[deviceId]/zones/regular"\**
+
+>   *"[deviceId]/zones/dangerous"\**
+
+\**For supported devices only*
 
 "[deviceId]/active"
 --------------------
@@ -294,6 +282,91 @@ bool
 | *Name* | *Type*  | *Description*                                                                                                       | *Required* |
 |--------|---------|---------------------------------------------------------------------------------------------------------------------|------------|
 | bool   | boolean | bool==true indicates the device can start normal activity bool==false indicates the device to cease normal activity | true       |
+
+"[deviceId]/configuration/energyProfile"
+-----------------------------------------
+
+| QoS    | 1    |
+|--------|------|
+| Retain | true |
+
+**Payload (compressed JsonObject):**  
+```
+{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}
+```
+
+| *Name* | *Type*  | *Description*                               | *Required* |
+|--------|---------|---------------------------------------------|------------|
+| active | boolean | Indicator if component is powered on or off | true       |
+| sr     | integer | sampling rate (in seconds)                  | true       |
+
+"[deviceId]/configuration/wifi"
+-------------------------------
+
+| QoS    | 1    |
+|--------|------|
+| Retain | true |
+
+**Payload (compressed JsonObject):**  
+```
+{"ssid":"wifi name","wlanpw":"wifi password"}
+```
+
+| *Name* | *Type* | *Description*                               | *Required* |
+|--------|--------|---------------------------------------------|------------|
+| ssid   | string | wifi service set identifier of home network | true       |
+| wlanpw | string | wifi password                               | true       |
+
+"[deviceId]/configuration/lteNB"
+--------------------------------
+
+| QoS    | 1    |
+|--------|------|
+| Retain | true |
+
+**Payload (compressed JsonObject):**  
+```
+{"apn":"telecom apn","band":integer}
+```
+
+| *Name* | *Type*  | *Description*                | *Required* |
+|--------|---------|------------------------------|------------|
+| apn    | string  | LTE-NB access point name     | true       |
+| band   | integer | LTE-NB frequency band number | true       |
+
+"[deviceId]/configuration/notifications"
+-----------------------------------------
+
+| QoS    | 1    |
+|--------|------|
+| Retain | true |
+
+**Payload (compressed JsonObject):**  
+```
+{"frequency":integer,"persistence":integer,"volume":integer}
+```
+
+| *Name*      | *Type*  | *Description*                                          | *Required* |
+|-------------|---------|--------------------------------------------------------|------------|
+| frequency   | integer | frequency of the notifications displayed on the device | true       |
+| persistence | integer | persistence display time of the notifications          | true       |
+| volume      | integer | volume of the audio notifications                      | true       |
+
+"[deviceId]/wandering/notification"
+------------------------------------
+
+| QoS    | 2     |
+|--------|-------|
+| Retain | false |
+
+**Payload (compressed JsonObject):**  
+```
+{"notification":"Wandering detected! Device: [deviceId];"}
+```
+
+| *Name*       | *Type* | *Description*                                                                   | *Required* |
+|--------------|--------|---------------------------------------------------------------------------------|------------|
+| notification | string | notification of detected wandering event, of user wearing the device [deviceId] | true       |
 
 "[deviceId]/zones/home"
 ------------------------
@@ -349,8 +422,11 @@ bool
 | lon    | float  | longitude coordinates           | true       |
 | lat    | float  | latitude coordinates            | true       |
 
-"[deviceId]/configuration/energyProfile"
------------------------------------------
+
+## TO-DO:
+
+"[deviceId]/configuration/gsm"
+------------------------------
 
 | QoS    | 1    |
 |--------|------|
@@ -358,76 +434,22 @@ bool
 
 **Payload (compressed JsonObject):**  
 ```
-{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}
+{"a":"a","b":integer}
 ```
 
-| *Name* | *Type*  | *Description*                               | *Required* |
-|--------|---------|---------------------------------------------|------------|
-| active | boolean | Indicator if component is powered on or off | true       |
-| sr     | integer | sampling rate (in seconds)                  | true       |
+| *Name* | *Type*  | *Description* | *Required* |
+|--------|---------|---------------|------------|
+| a      | string  |               | true       |
+| b      | integer |               | true       |
 
-"[deviceId]/configuration/notifications"
------------------------------------------
-
-| QoS    | 1    |
-|--------|------|
-| Retain | true |
-
-**Payload (compressed JsonObject):**  
-```
-{"frequency":integer,"persistence":integer,"volume":integer}
-```
-
-| *Name*      | *Type*  | *Description*                                          | *Required* |
-|-------------|---------|--------------------------------------------------------|------------|
-| frequency   | integer | frequency of the notifications displayed on the device | true       |
-| persistence | integer | persistence display time of the notifications          | true       |
-| volume      | integer | volume of the audio notifications                      | true       |
-
-"[deviceId]/configuration/wifi"<br>
------------------------------------
-
-| QoS    | 1    |
-|--------|------|
-| Retain | true |
-
-**Payload (compressed JsonObject):**  
-```
-{"ssid":"wifi name","wlanpw":"wifi password"}
-```
-
-| *Name* | *Type* | *Description*                               | *Required* |
-|--------|--------|---------------------------------------------|------------|
-| ssid   | string | wifi service set identifier of home network | true       |
-| wlanpw | string | wifi password                               | true       |
-
-"[deviceId]/configuration/lteNB"<br>
+"[deviceId]/configuration/bluetooth"
 ------------------------------------
 
 | QoS    | 1    |
 |--------|------|
 | Retain | true |
 
-**Payload (compressed JsonObject):**  
-```
-{"apn":"telecom apn","band":integer}
-```
-
-| *Name* | *Type*  | *Description*                | *Required* |
-|--------|---------|------------------------------|------------|
-| apn    | string  | LTE-NB access point name     | true       |
-| band   | integer | LTE-NB frequency band number | true       |
-
-TO-DO:
-
-"[deviceId]/configuration/gsm"<br>
-----------------------------------
-
-| QoS    | 1    |
-|--------|------|
-| Retain | true |
-
-**Payload (compressed JsonObject):**  
+**Payload (compressed JsonObject):**
 ```
 {"a":"a","b":integer}
 ```
@@ -437,8 +459,8 @@ TO-DO:
 | a      | string  |               | true       |
 | b      | integer |               | true       |
 
-"[deviceId]/configuration/bluetooth"<br>
-----------------------------------------
+"[deviceId]/configuration/lora"
+-------------------------------
 
 | QoS    | 1    |
 |--------|------|
@@ -454,25 +476,8 @@ TO-DO:
 | a      | string  |               | true       |
 | b      | integer |               | true       |
 
-"[deviceId]/configuration/lora"<br>
------------------------------------
-
-| QoS    | 1    |
-|--------|------|
-| Retain | true |
-
-**Payload (compressed JsonObject):**
-```
-{"a":"a","b":integer}
-```
-
-| *Name* | *Type*  | *Description* | *Required* |
-|--------|---------|---------------|------------|
-| a      | string  |               | true       |
-| b      | integer |               | true       |
-
-"[deviceId]/configuration/gnss"<br>
------------------------------------
+"[deviceId]/configuration/gnss"
+-------------------------------
 
 | QoS    | 1    |
 |--------|------|
@@ -488,8 +493,8 @@ TO-DO:
 | a      | string  |               | true       |
 | b      | integer |               | true       |
 
-"[deviceId]/configuration/accelerometer"<br>
---------------------------------------------
+"[deviceId]/configuration/accelerometer"
+----------------------------------------
 
 | QoS    | 1    |
 |--------|------|

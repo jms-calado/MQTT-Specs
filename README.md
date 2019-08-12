@@ -92,7 +92,7 @@ Publish Topics
 
 >   *"[deviceId]/wandering/detected"***\***
 
-**\****For supported devices only*
+**\*** *For supported devices only*
 
 "[deviceId]/status"
 --------------------
@@ -265,7 +265,7 @@ Subscribe Topics
 
 >   *"[deviceId]/zones/dangerous"***\***
 
-**\****For supported devices only*
+**\*** *For supported devices only*
 
 "[deviceId]/active"
 --------------------

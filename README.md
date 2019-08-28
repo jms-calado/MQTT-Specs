@@ -158,27 +158,27 @@ Publish Topics
 **Pretty Json:**
 
 ```JSON
-{  
-	"timestamp": "YYYY-MM-DDThh:mm:ssZ",  
-	"location": {  
-		"type": "MultiPoint",  
-		"coordinates": [  
-			[lon1, lat2, alt3],  
-		  	[lonn, latn, altn]  
-		],  
-		"properties": [  
-			[hdop1, vdop1, pdop1],  
-		  	[hdopn, vdopn, pdopn]  
-		]  
-	},  
-	"batteryLevel": integer,  
-	"accompanied": boolean,  
-	"sensor": {  
-		"accelerometer": [  
-			[x1, y1, z1],  
-		  	[xn, yn, zn]  
-		]  
-	}  
+{
+	"timestamp": "YYYY-MM-DDThh:mm:ssZ",
+	"location": {
+		"type": "MultiPoint",
+		"coordinates": [
+			[lon1, lat2, alt3],
+		  	[lonn, latn, altn]
+		],
+		"properties": [
+			[hdop1, vdop1, pdop1],
+		  	[hdopn, vdopn, pdopn]
+		]
+	},
+	"batteryLevel": integer,
+	"accompanied": boolean,
+	"sensor": {
+		"accelerometer": [
+			[x1, y1, z1],
+		  	[xn, yn, zn]
+		]
+	}
 }
 ```
 
@@ -186,19 +186,19 @@ Publish Topics
 |-----------------|----------------|------------------------------------------------------|------------|
 | timestamp       | string         | timestamp with the dateTime when data was recorded   | true       |
 | location        | geojson object | geojson multipoint object                            | true       |
-| * lat           | float          | latitude coordinates                                 | true       |
-| * lon           | float          | longitude coordinates                                | true       |
-| * alt           | float          | altitude coordinates                                 | true       |
-| * hdop          | float          | horizontal dilution of precision                     | false      |
-| * vdop          | float          | vertical dilution of precision                       | false      |
-| * pdop          | float          | positional dilution of precision                     | false      |
+|   lat           | float          | latitude coordinates                                 | true       |
+|   lon           | float          | longitude coordinates                                | true       |
+|   alt           | float          | altitude coordinates                                 | true       |
+|   hdop          | float          | horizontal dilution of precision                     | false      |
+|   vdop          | float          | vertical dilution of precision                       | false      |
+|   pdop          | float          | positional dilution of precision                     | false      |
 | batteryLevel    | integer        | value of battery level in mAh                        | true       |
 | accompanied     | boolean        | indicator if device is paired with carer smartphone  | false      |
 | sensor          | json object    | json object with the sensors available on the device | false      |
-| * accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
-| - x             | float          | x axis acceleration value                            |            |
-| - y             | float          | y axis acceleration value                            |            |
-| - z             | float          | z axis acceleration value                            |            |
+|   accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
+|     x           | float          | x axis acceleration value                            |            |
+|     y           | float          | y axis acceleration value                            |            |
+|     z           | float          | z axis acceleration value                            |            |
 
 "[deviceId]/fall/confirmation"
 -------------------------------

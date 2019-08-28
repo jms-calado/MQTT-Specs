@@ -12,11 +12,43 @@ features across different devices.
 
 *Document version*: 3.1.0 – 2019-08-06
 
----
+----
 
-{:toc}
+## Table of Contents
 
----
+- [Carelink Device MQTT Specifications](#carelink-device-mqtt-specifications)
+  * [Standards and nomenclature used](#standards-and-nomenclature-used)
+  * [Common Variables](#common-variables)
+- [Connect Packet](#connect-packet)
+- [MQTT Pub-Sub Topics Dendrogram](#mqtt-pub-sub-topics-dendrogram)
+- [MQTT Messages Sequence Diagrams](#mqtt-messages-sequence-diagrams)
+    + [Device power-up](#device-power-up)
+    + [Normal usage](#normal-usage)
+    + [Fall/Wandering](#fall-wandering)
+- [Publish Topics](#publish-topics)
+  * ["[deviceId]/status"](#--deviceid--status-)
+  * ["[deviceId]/fall/confirmation"](#--deviceid--fall-confirmation-)
+  * ["[deviceId]/fall/detected"](#--deviceid--fall-detected-)
+  * ["[deviceId]/wandering/confirmation"](#--deviceid--wandering-confirmation-)
+  * ["[deviceId]/wandering/detected"](#--deviceid--wandering-detected-)
+- [Subscribe Topics](#subscribe-topics)
+  * ["[deviceId]/active"](#--deviceid--active-)
+  * ["[deviceId]/configuration/energyProfile"](#--deviceid--configuration-energyprofile-)
+  * ["[deviceId]/configuration/wifi"](#--deviceid--configuration-wifi-)
+  * ["[deviceId]/configuration/lteNB"](#--deviceid--configuration-ltenb-)
+  * ["[deviceId]/configuration/notifications"](#--deviceid--configuration-notifications-)
+  * ["[deviceId]/wandering/notification"](#--deviceid--wandering-notification-)
+  * ["[deviceId]/zones/home"](#--deviceid--zones-home-)
+  * ["[deviceId]/zones/regular"](#--deviceid--zones-regular-)
+  * ["[deviceId]/zones/dangerous"](#--deviceid--zones-dangerous-)
+  * [TO-DO:](#to-do-)
+  * ["[deviceId]/configuration/gsm"](#--deviceid--configuration-gsm-)
+  * ["[deviceId]/configuration/bluetooth"](#--deviceid--configuration-bluetooth-)
+  * ["[deviceId]/configuration/lora"](#--deviceid--configuration-lora-)
+  * ["[deviceId]/configuration/gnss"](#--deviceid--configuration-gnss-)
+  * ["[deviceId]/configuration/accelerometer"](#--deviceid--configuration-accelerometer-)
+
+----
 
 Standards and nomenclature used
 -------------------------------

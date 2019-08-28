@@ -41,12 +41,12 @@ features across different devices.
   * ["[deviceId]/zones/home"](#--deviceid--zones-home-)
   * ["[deviceId]/zones/regular"](#--deviceid--zones-regular-)
   * ["[deviceId]/zones/dangerous"](#--deviceid--zones-dangerous-)
-  * [TO-DO:](#to-do-)
-  * ["[deviceId]/configuration/gsm"](#--deviceid--configuration-gsm-)
-  * ["[deviceId]/configuration/bluetooth"](#--deviceid--configuration-bluetooth-)
-  * ["[deviceId]/configuration/lora"](#--deviceid--configuration-lora-)
-  * ["[deviceId]/configuration/gnss"](#--deviceid--configuration-gnss-)
-  * ["[deviceId]/configuration/accelerometer"](#--deviceid--configuration-accelerometer-)
+  - [TO-DO:](#to-do-)
+    - ["[deviceId]/configuration/gsm"](#--deviceid--configuration-gsm-)
+    - ["[deviceId]/configuration/bluetooth"](#--deviceid--configuration-bluetooth-)
+    - ["[deviceId]/configuration/lora"](#--deviceid--configuration-lora-)
+    - ["[deviceId]/configuration/gnss"](#--deviceid--configuration-gnss-)
+    - ["[deviceId]/configuration/accelerometer"](#--deviceid--configuration-accelerometer-)
 
 ----
 

@@ -8,7 +8,7 @@ considerations need to be observed, specifically in the standards and
 nomenclature used, as well as in the interoperability of some variables and
 features across different devices.
 
-*Autor*: Jorge Calado (jsc\@uninova.pt)
+*Author*: Jorge Calado (jsc\@uninova.pt)
 
 *Document version*: 3.1.0 – 2019-08-06
 
@@ -43,9 +43,9 @@ Connect Packet
 
 | Clean Session | false |
 |---------------|-------|
-| Will Qos      | 2     |
+| Will Qos      | 1     |
 | Will Flag     | true  |
-| Will Retain   | true  |
+| Will Retain   | false |
 | Keep Alive    | 600   |
 
 **Connect Payload:**
@@ -101,9 +101,35 @@ Publish Topics
 |--------|-------|
 | Retain | false |
 
-**(Single Status) Payload (compressed JsonObject):**  
+**(Single Status) Payload (using compressed JsonObject):**
+
+```JSON
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":{"x":float,"y":float,"z":float}}}
 ```
-{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":"x, y, z"}}
+
+**Pretty Json:**
+
+```JSON
+{
+	"timestamp": "YYYY-MM-DDThh:mm:ssZ",
+	"location": {
+		"lat": float,
+		"lon": float,
+		"alt": float,
+		"hdop": float,
+		"vdop": float,
+		"pdop": float
+	},
+	"batteryLevel": integer,
+	"accompanied": boolean,
+	"sensor": {
+		"accelerometer": {
+			"x": float,
+			"y": float,
+			"z": float
+		}
+	}
+}
 ```
 
 | *Name*        | *Type*      | *Description*                                              | *Required* |
@@ -119,30 +145,60 @@ Publish Topics
 | batteryLevel  | integer     | value of battery level in mAh                              | true       |
 | accompanied   | boolean     | indicator if device is paired with carer smartphone        | false      |
 | sensor        | json object | json object with the sensors available on the device       | false      |
-| accelerometer | string      | x, y, z axis acceleration values                           | false      |
+| accelerometer | float       | x, y, z axis acceleration values                           | false      |
+| x             | float       | x axis acceleration value                                  |            |
+| y             | float       | y axis acceleration value                                  |            |
+| z             | float       | z axis acceleration value                                  |            |
 
 **(Multi Status) Payload (compressed JsonObject):**  
 ```
 {"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[["lon","lat","alt"],…,["lon","lat","alt"]],"properties":[["hdop","vdop","pdop"],…,["hdop","vdop","pdop"]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[["x","y","z"],…,["x","y","z"]]}}
 ```
 
-| *Name*        | *Type*         | *Description*                                        | *Required* |
-|---------------|----------------|------------------------------------------------------|------------|
-| timestamp     | string         | timestamp with the dateTime when data was recorded   | true       |
-| location      | geojson object | geojson multipoint object                            | true       |
-| lat           | float          | latitude coordinates                                 | true       |
-| lon           | float          | longitude coordinates                                | true       |
-| alt           | float          | altitude coordinates                                 | true       |
-| hdop          | float          | horizontal dilution of precision                     | false      |
-| vdop          | float          | vertical dilution of precision                       | false      |
-| pdop          | float          | positional dilution of precision                     | false      |
-| batteryLevel  | integer        | value of battery level in mAh                        | true       |
-| accompanied   | boolean        | indicator if device is paired with carer smartphone  | false      |
-| sensor        | json object    | json object with the sensors available on the device | false      |
-| accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
-| x             | float          | x axis acceleration value                            |            |
-| y             | float          | y axis acceleration value                            |            |
-| z             | float          | z axis acceleration value                            |            |
+**Pretty Json:**
+
+```JSON
+{  
+	"timestamp": "YYYY-MM-DDThh:mm:ssZ",  
+	"location": {  
+		"type": "MultiPoint",  
+		"coordinates": [  
+			[lon1, lat2, alt3],  
+		  	[lonn, latn, altn]  
+		],  
+		"properties": [  
+			[hdop1, vdop1, pdop1],  
+		  	[hdopn, vdopn, pdopn]  
+		]  
+	},  
+	"batteryLevel": integer,  
+	"accompanied": boolean,  
+	"sensor": {  
+		"accelerometer": [  
+			[x1, y1, z1],  
+		  	[xn, yn, zn]  
+		]  
+	}  
+}
+```
+
+| *Name*          | *Type*         | *Description*                                        | *Required* |
+|-----------------|----------------|------------------------------------------------------|------------|
+| timestamp       | string         | timestamp with the dateTime when data was recorded   | true       |
+| location        | geojson object | geojson multipoint object                            | true       |
+| * lat           | float          | latitude coordinates                                 | true       |
+| * lon           | float          | longitude coordinates                                | true       |
+| * alt           | float          | altitude coordinates                                 | true       |
+| * hdop          | float          | horizontal dilution of precision                     | false      |
+| * vdop          | float          | vertical dilution of precision                       | false      |
+| * pdop          | float          | positional dilution of precision                     | false      |
+| batteryLevel    | integer        | value of battery level in mAh                        | true       |
+| accompanied     | boolean        | indicator if device is paired with carer smartphone  | false      |
+| sensor          | json object    | json object with the sensors available on the device | false      |
+| * accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
+| - x             | float          | x axis acceleration value                            |            |
+| - y             | float          | y axis acceleration value                            |            |
+| - z             | float          | z axis acceleration value                            |            |
 
 "[deviceId]/fall/confirmation"
 -------------------------------
@@ -292,7 +348,7 @@ bool
 
 **Payload (compressed JsonObject):**  
 ```
-{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora"{"active":boolean,"sr":integer}}
+{"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora":{"active":boolean,"sr":integer}}
 ```
 
 | *Name* | *Type*  | *Description*                               | *Required* |

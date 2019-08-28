@@ -14,6 +14,10 @@ features across different devices.
 
 ---
 
+{:toc}
+
+---
+
 Standards and nomenclature used
 -------------------------------
 
@@ -145,10 +149,10 @@ Publish Topics
 | batteryLevel  | integer     | value of battery level in mAh                              | true       |
 | accompanied   | boolean     | indicator if device is paired with carer smartphone        | false      |
 | sensor        | json object | json object with the sensors available on the device       | false      |
-| accelerometer | float       | x, y, z axis acceleration values                           | false      |
-| x             | float       | x axis acceleration value                                  |            |
-| y             | float       | y axis acceleration value                                  |            |
-| z             | float       | z axis acceleration value                                  |            |
+| accelerometer | json object | x, y, z axis acceleration values                           | false      |
+| x             | float       | x axis acceleration value                                  | true*      |
+| y             | float       | y axis acceleration value                                  | true*      |
+| z             | float       | z axis acceleration value                                  | true*      |
 
 **(Multi Status) Payload (compressed JsonObject):**
 
@@ -197,9 +201,9 @@ Publish Topics
 | accompanied     | boolean        | indicator if device is paired with carer smartphone  | false      |
 | sensor          | json object    | json object with the sensors available on the device | false      |
 |   accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
-|     x           | float          | x axis acceleration value                            |            |
-|     y           | float          | y axis acceleration value                            |            |
-|     z           | float          | z axis acceleration value                            |            |
+|     x           | float          | x axis acceleration value                            | true*      |
+|     y           | float          | y axis acceleration value                            | true*      |
+|     z           | float          | z axis acceleration value                            | true*      |
 
 "[deviceId]/fall/confirmation"
 -------------------------------

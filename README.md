@@ -103,32 +103,32 @@ Publish Topics
 
 **(Single Status) Payload (using compressed JsonObject):**
 
-```JSON
+```json
 {"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":{"x":float,"y":float,"z":float}}}
 ```
 
 **Pretty Json:**
 
-```JSON
+```json
 {
-	"timestamp": "YYYY-MM-DDThh:mm:ssZ",
-	"location": {
-		"lat": float,
-		"lon": float,
-		"alt": float,
-		"hdop": float,
-		"vdop": float,
-		"pdop": float
-	},
-	"batteryLevel": integer,
-	"accompanied": boolean,
-	"sensor": {
-		"accelerometer": {
-			"x": float,
-			"y": float,
-			"z": float
-		}
-	}
+    "timestamp": "YYYY-MM-DDThh:mm:ssZ",
+    "location": {
+        "lat": float,
+        "lon": float,
+        "alt": float,
+        "hdop": float,
+        "vdop": float,
+        "pdop": float
+    },
+    "batteryLevel": integer,
+    "accompanied": boolean,
+    "sensor": {
+        "accelerometer": {
+            "x": float,
+            "y": float,
+            "z": float
+        }
+    }
 }
 ```
 
@@ -150,35 +150,36 @@ Publish Topics
 | y             | float       | y axis acceleration value                                  |            |
 | z             | float       | z axis acceleration value                                  |            |
 
-**(Multi Status) Payload (compressed JsonObject):**  
-```
-{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[["lon","lat","alt"],…,["lon","lat","alt"]],"properties":[["hdop","vdop","pdop"],…,["hdop","vdop","pdop"]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[["x","y","z"],…,["x","y","z"]]}}
+**(Multi Status) Payload (compressed JsonObject):**
+
+```json
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[[lon1,lat2,alt3],[lonn,latn,altn]],"properties":[[hdop1,vdop1,pdop1],[hdopn,vdopn,pdopn]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[[x1,y1,z1],[xn,yn,zn]]}}
 ```
 
 **Pretty Json:**
 
-```JSON
+```json
 {
-	"timestamp": "YYYY-MM-DDThh:mm:ssZ",
-	"location": {
-		"type": "MultiPoint",
-		"coordinates": [
-			[lon1, lat2, alt3],
-		  	[lonn, latn, altn]
-		],
-		"properties": [
-			[hdop1, vdop1, pdop1],
-		  	[hdopn, vdopn, pdopn]
-		]
-	},
-	"batteryLevel": integer,
-	"accompanied": boolean,
-	"sensor": {
-		"accelerometer": [
-			[x1, y1, z1],
-		  	[xn, yn, zn]
-		]
-	}
+    "timestamp": "YYYY-MM-DDThh:mm:ssZ",
+    "location": {
+        "type": "MultiPoint",
+        "coordinates": [
+            [lon1, lat2, alt3],
+            [lonn, latn, altn]
+        ],
+        "properties": [
+            [hdop1, vdop1, pdop1],
+            [hdopn, vdopn, pdopn]
+        ]
+    },
+    "batteryLevel": integer,
+    "accompanied": boolean,
+    "sensor": {
+        "accelerometer": [
+            [x1, y1, z1],
+            [xn, yn, zn]
+        ]
+    }
 }
 ```
 
@@ -208,7 +209,7 @@ Publish Topics
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
@@ -234,7 +235,7 @@ Publish Topics
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
@@ -259,7 +260,7 @@ Publish Topics
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"status":boolean,"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
@@ -285,7 +286,7 @@ Publish Topics
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float},"batteryLevel":integer,"sensor":{"accelerometer":"x,y,z","heartrate":integer,"temperature":integer}}
 ```
 
@@ -331,7 +332,7 @@ Subscribe Topics
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 bool
 ```
 
@@ -347,7 +348,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"gnss":{"active":boolean,"sr":integer},"lteNB":{"active":boolean,"sr":integer},"wifi":{"active":boolean,"sr":integer},"lora":{"active":boolean,"sr":integer}}
 ```
 
@@ -364,7 +365,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"ssid":"wifi name","wlanpw":"wifi password"}
 ```
 
@@ -381,7 +382,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"apn":"telecom apn","band":integer}
 ```
 
@@ -398,7 +399,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"frequency":integer,"persistence":integer,"volume":integer}
 ```
 
@@ -416,7 +417,7 @@ bool
 | Retain | false |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"notification":"Wandering detected! Device: [deviceId];"}
 ```
 
@@ -432,7 +433,7 @@ bool
 | Retain | true |
 
 **Payload (compressed GeoJson Feature Collection):**
-```
+```json
 {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"home"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}
 ```
 
@@ -450,7 +451,7 @@ bool
 | Retain | true |
 
 **Payload (compressed GeoJson Feature Collection):**  
-```
+```json
 {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"regular1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}
 ```
 
@@ -468,7 +469,7 @@ bool
 | Retain | true |
 
 **Payload (compressed GeoJson Feature Collection):**  
-```
+```json
 {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"dangerous1"},"geometry":{"type":"Polygon","coordinates":[[[lon,lat],[lon,lat],[lon,lat],[lon,lat]]]}}]}
 ```
 
@@ -489,7 +490,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**  
-```
+```json
 {"a":"a","b":integer}
 ```
 
@@ -506,7 +507,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**
-```
+```json
 {"a":"a","b":integer}
 ```
 
@@ -523,7 +524,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**
-```
+```json
 {"a":"a","b":integer}
 ```
 
@@ -540,7 +541,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**
-```  
+```json
 {"a":"a","b":integer}
 ```
 
@@ -557,7 +558,7 @@ bool
 | Retain | true |
 
 **Payload (compressed JsonObject):**
-```
+```json
 {"a":"a","b":integer}
 ```
 

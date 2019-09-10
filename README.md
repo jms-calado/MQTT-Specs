@@ -189,7 +189,7 @@ Publish Topics
 **(Multi Status) Payload (compressed JsonObject):**
 
 ```json
-{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[[lon1,lat2,alt3],[lonn,latn,altn]],"properties":[[hdop1,vdop1,pdop1],[hdopn,vdopn,pdopn]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[[x1,y1,z1],[xn,yn,zn]]}}
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[[lon_a,lat_a,alt_a],[lon_n,lat_n,alt_n]],"properties":[[hdop_a,vdop_a,pdop_a],[hdop_n,vdop_n,pdop_n]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[[x_a,y_a,z_a],[x_n,y_n,z_n]]}}
 ```
 
 **Pretty Json:**
@@ -200,20 +200,20 @@ Publish Topics
     "location": {
         "type": "MultiPoint",
         "coordinates": [
-            [lon1, lat2, alt3],
-            [lonn, latn, altn]
+            [lon_a, lat_a, alt_a],
+            [lon_n, lat_n, alt_n]
         ],
         "properties": [
-            [hdop1, vdop1, pdop1],
-            [hdopn, vdopn, pdopn]
+            [hdop_a, vdop_a, pdop_a],
+            [hdop_n, vdop_n, pdop_n]
         ]
     },
     "batteryLevel": integer,
     "accompanied": boolean,
     "sensor": {
         "accelerometer": [
-            [x1, y1, z1],
-            [xn, yn, zn]
+            [x_a, y_a, z_a],
+            [x_n, y_n, z_n]
         ]
     }
 }
@@ -223,19 +223,19 @@ Publish Topics
 |-----------------|----------------|------------------------------------------------------|------------|
 | timestamp       | string         | timestamp with the dateTime when data was recorded   | true       |
 | location        | geojson object | geojson multipoint object                            | true       |
-|   lat           | float          | latitude coordinates                                 | true       |
-|   lon           | float          | longitude coordinates                                | true       |
-|   alt           | float          | altitude coordinates                                 | true       |
-|   hdop          | float          | horizontal dilution of precision                     | false      |
-|   vdop          | float          | vertical dilution of precision                       | false      |
-|   pdop          | float          | positional dilution of precision                     | false      |
+|   lat_x         | float          | latitude coordinates                                 | true       |
+|   lon_x         | float          | longitude coordinates                                | true       |
+|   alt_x         | float          | altitude coordinates                                 | true       |
+|   hdop_x        | float          | horizontal dilution of precision                     | false      |
+|   vdop_x        | float          | vertical dilution of precision                       | false      |
+|   pdop_x        | float          | positional dilution of precision                     | false      |
 | batteryLevel    | integer        | value of battery level in mAh                        | true       |
 | accompanied     | boolean        | indicator if device is paired with carer smartphone  | false      |
 | sensor          | json object    | json object with the sensors available on the device | false      |
 |   accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
-|     x           | float          | x axis acceleration value                            | true*      |
-|     y           | float          | y axis acceleration value                            | true*      |
-|     z           | float          | z axis acceleration value                            | true*      |
+|     x_x         | float          | x axis acceleration value                            | true*      |
+|     y_x         | float          | y axis acceleration value                            | true*      |
+|     z_x         | float          | z axis acceleration value                            | true*      |
 
 "[deviceId]/fall/confirmation"
 -------------------------------
@@ -405,10 +405,10 @@ bool
 {"ssid":"wifi name","wlanpw":"wifi password"}
 ```
 
-| *Name* | *Type* | *Description*                               | *Required* |
-|--------|--------|---------------------------------------------|------------|
-| ssid   | string | wifi service set identifier of home network | true       |
-| wlanpw | string | wifi password                               | true       |
+| *Name* | *Type* | *Description*                                   | *Required* |
+|--------|--------|-------------------------------------------------|------------|
+| ssid   | string | wifi service set identifier of PwD home network | true       |
+| wlanpw | string | wifi password                                   | true       |
 
 "[deviceId]/configuration/lteNB"
 --------------------------------

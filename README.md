@@ -27,6 +27,7 @@ features across different devices.
   - [Fall/Wandering](#fallwandering)
 - [Publish Topics](#publish-topics)
   - ["[deviceId]/status"](#deviceidstatus)
+  - ["[deviceId]/statusWifiAPs"](#deviceidstatuswifiaps)
   - ["[deviceId]/fall/confirmation"](#deviceidfallconfirmation)
   - ["[deviceId]/fall/detected"](#deviceidfalldetected)
   - ["[deviceId]/wandering/confirmation"](#deviceidwanderingconfirmation)

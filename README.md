@@ -120,6 +120,8 @@ Publish Topics
 
 >   *"[deviceId]/status"*
 
+>   *"[deviceId]/statusWifiAPs"* **\***
+
 >   *"[deviceId]/fall/confirmation"* **\***
 
 >   *"[deviceId]/fall/detected"* **\***
@@ -140,7 +142,67 @@ Publish Topics
 **(Single Status) Payload (using compressed JsonObject):**
 
 ```json
-{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":{"x":float,"y":float,"z":float}}}
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float,"type":string,"accuracy":integer},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":{"x":float,"y":float,"z":float}}}
+```
+
+**Pretty Json:**
+
+```json
+{
+    "timestamp": "YYYY-MM-DDThh:mm:ssZ",
+    "location": {
+        "lat": float,
+        "lon": float,
+        "alt": float,
+        "hdop": float,
+        "vdop": float,
+        "pdop": float,
+        "type": string,
+        "accuracy": integer
+    },
+    "batteryLevel": integer,
+    "accompanied": boolean,
+    "sensor": {
+        "accelerometer": {
+            "x": float,
+            "y": float,
+            "z": float
+        }
+    }
+}
+```
+
+| *Name*        | *Type*      | *Description*                                                                   | *Required* |
+|---------------|-------------|---------------------------------------------------------------------------------|------------|
+| timestamp     | string      | timestamp with the dateTime when data was recorded                              | true       |
+| location      | json object | json object with latitude, longitude, altitude coordinates                      | true       |
+| lat           | float       | latitude coordinates                                                            | true       |
+| lon           | float       | longitude coordinates                                                           | true       |
+| alt           | float       | altitude coordinates                                                            | false      |
+| hdop          | float       | horizontal dilution of precision                                                | false      |
+| vdop          | float       | vertical dilution of precision                                                  | false      |
+| pdop          | float       | positional dilution of precision                                                | false      |
+| type          | string      | origin of gps coordenates; can be: "gps", "here", "opencellid", "google", "lora"| false      |
+| accuracy      | integer     | positional dilution of precision                                                | false      |
+| batteryLevel  | integer     | value of battery level in mAh                                                   | true       |
+| accompanied   | boolean     | indicator if device is paired with carer smartphone                             | false      |
+| sensor        | json object | json object with the sensors available on the device                            | false      |
+| accelerometer | json object | x, y, z axis acceleration values                                                | false      |
+| x             | float       | x axis acceleration value                                                       | true*      |
+| y             | float       | y axis acceleration value                                                       | true*      |
+| z             | float       | z axis acceleration value                                                       | true*      |
+
+"[deviceId]/statusWifiAPs"
+--------------------
+
+| QoS    | 0     |
+|--------|-------|
+| Retain | false |
+
+**(Single Status) Payload (using compressed JsonObject):**
+
+```json
+{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"lat":float,"lon":float,"alt":float,"hdop":float,"vdop":float,"pdop":float},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":{"x":float,"y":float,"z":float}},"wifiAPs":{"mac_1":string,"rssi_1":integer,"mac_2":string,"rssi_2":integer,"mac_3":string,"rssi_3":integer}}
 ```
 
 **Pretty Json:**
@@ -164,6 +226,14 @@ Publish Topics
             "y": float,
             "z": float
         }
+    },
+    "wifiAPs": {
+        "mac_1": string,
+        "rssi_1": integer,
+        "mac_2": string,
+        "rssi_2": integer,
+        "mac_3": string,
+        "rssi_3": integer
     }
 }
 ```
@@ -174,7 +244,7 @@ Publish Topics
 | location      | json object | json object with latitude, longitude, altitude coordinates | true       |
 | lat           | float       | latitude coordinates                                       | true       |
 | lon           | float       | longitude coordinates                                      | true       |
-| alt           | float       | altitude coordinates                                       | true       |
+| alt           | float       | altitude coordinates                                       | false      |
 | hdop          | float       | horizontal dilution of precision                           | false      |
 | vdop          | float       | vertical dilution of precision                             | false      |
 | pdop          | float       | positional dilution of precision                           | false      |
@@ -185,57 +255,13 @@ Publish Topics
 | x             | float       | x axis acceleration value                                  | true*      |
 | y             | float       | y axis acceleration value                                  | true*      |
 | z             | float       | z axis acceleration value                                  | true*      |
-
-**(Multi Status) Payload (compressed JsonObject):**
-
-```json
-{"timestamp":"YYYY-MM-DDThh:mm:ssZ","location":{"type":"MultiPoint","coordinates":[[lon_a,lat_a,alt_a],[lon_n,lat_n,alt_n]],"properties":[[hdop_a,vdop_a,pdop_a],[hdop_n,vdop_n,pdop_n]]},"batteryLevel":integer,"accompanied":boolean,"sensor":{"accelerometer":[[x_a,y_a,z_a],[x_n,y_n,z_n]]}}
-```
-
-**Pretty Json:**
-
-```json
-{
-    "timestamp": "YYYY-MM-DDThh:mm:ssZ",
-    "location": {
-        "type": "MultiPoint",
-        "coordinates": [
-            [lon_a, lat_a, alt_a],
-            [lon_n, lat_n, alt_n]
-        ],
-        "properties": [
-            [hdop_a, vdop_a, pdop_a],
-            [hdop_n, vdop_n, pdop_n]
-        ]
-    },
-    "batteryLevel": integer,
-    "accompanied": boolean,
-    "sensor": {
-        "accelerometer": [
-            [x_a, y_a, z_a],
-            [x_n, y_n, z_n]
-        ]
-    }
-}
-```
-
-| *Name*          | *Type*         | *Description*                                        | *Required* |
-|-----------------|----------------|------------------------------------------------------|------------|
-| timestamp       | string         | timestamp with the dateTime when data was recorded   | true       |
-| location        | geojson object | geojson multipoint object                            | true       |
-|   lat_x         | float          | latitude coordinates                                 | true       |
-|   lon_x         | float          | longitude coordinates                                | true       |
-|   alt_x         | float          | altitude coordinates                                 | true       |
-|   hdop_x        | float          | horizontal dilution of precision                     | false      |
-|   vdop_x        | float          | vertical dilution of precision                       | false      |
-|   pdop_x        | float          | positional dilution of precision                     | false      |
-| batteryLevel    | integer        | value of battery level in mAh                        | true       |
-| accompanied     | boolean        | indicator if device is paired with carer smartphone  | false      |
-| sensor          | json object    | json object with the sensors available on the device | false      |
-|   accelerometer | strings array  | x, y, z axis acceleration values                     | false      |
-|     x_x         | float          | x axis acceleration value                            | true*      |
-|     y_x         | float          | y axis acceleration value                            | true*      |
-|     z_x         | float          | z axis acceleration value                            | true*      |
+| wifiAPs       | json object | json object of the 3 AP's with the strongest signal        | true       |
+| mac_1         | string      | bssid of the AP                                            | true       |
+| mac_2         | string      | bssid of the AP                                            | true       |
+| mac_3         | string      | bssid of the AP                                            | true       |
+| rssi_1        | integer     | rssi value of the AP                                       | true       |
+| rssi_2        | integer     | rssi value of the AP                                       | true       |
+| rssi_3        | integer     | rssi value of the AP                                       | true       |
 
 "[deviceId]/fall/confirmation"
 -------------------------------

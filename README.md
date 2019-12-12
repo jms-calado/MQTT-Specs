@@ -173,25 +173,25 @@ Publish Topics
 }
 ```
 
-| *Name*        | *Type*      | *Description*                                                                   | *Required* |
-|---------------|-------------|---------------------------------------------------------------------------------|------------|
-| timestamp     | string      | timestamp with the dateTime when data was recorded                              | true       |
-| location      | json object | json object with latitude, longitude, altitude coordinates                      | true       |
-| lat           | float       | latitude coordinates                                                            | true       |
-| lon           | float       | longitude coordinates                                                           | true       |
-| alt           | float       | altitude coordinates                                                            | false      |
-| hdop          | float       | horizontal dilution of precision                                                | false      |
-| vdop          | float       | vertical dilution of precision                                                  | false      |
-| pdop          | float       | positional dilution of precision                                                | false      |
-| type          | string      | origin of gps coordenates; can be: "gps", "here", "opencellid", "google", "lora"| false      |
-| accuracy      | integer     | positional dilution of precision                                                | false      |
-| batteryLevel  | integer     | value of battery level in mAh                                                   | true       |
-| accompanied   | boolean     | indicator if device is paired with carer smartphone                             | false      |
-| sensor        | json object | json object with the sensors available on the device                            | false      |
-| accelerometer | json object | x, y, z axis acceleration values                                                | false      |
-| x             | float       | x axis acceleration value                                                       | true*      |
-| y             | float       | y axis acceleration value                                                       | true*      |
-| z             | float       | z axis acceleration value                                                       | true*      |
+| *Name*        | *Type*      | *Description*                                                                             | *Required* |
+|---------------|-------------|-------------------------------------------------------------------------------------------|------------|
+| timestamp     | string      | timestamp with the dateTime when data was recorded                                        | true       |
+| location      | json object | json object with latitude, longitude, altitude coordinates                                | true       |
+| lat           | float       | latitude coordinates                                                                      | true       |
+| lon           | float       | longitude coordinates                                                                     | true       |
+| alt           | float       | altitude coordinates                                                                      | false      |
+| hdop          | float       | horizontal dilution of precision                                                          | false      |
+| vdop          | float       | vertical dilution of precision                                                            | false      |
+| pdop          | float       | positional dilution of precision                                                          | false      |
+| type          | string      | origin of gps coordenates; can be: "gps" (default), "here", "opencellid", "google", "lora"| false      |
+| accuracy      | integer     | positional dilution of precision                                                          | false      |
+| batteryLevel  | integer     | value of battery level in mAh                                                             | true       |
+| accompanied   | boolean     | indicator if device is paired with carer smartphone                                       | false      |
+| sensor        | json object | json object with the sensors available on the device                                      | false      |
+| accelerometer | json object | x, y, z axis acceleration values                                                          | false      |
+| x             | float       | x axis acceleration value                                                                 | true*      |
+| y             | float       | y axis acceleration value                                                                 | true*      |
+| z             | float       | z axis acceleration value                                                                 | true*      |
 
 "[deviceId]/statusWifiAPs"
 --------------------

@@ -10,7 +10,7 @@ features across different devices.
 
 *Author*: Jorge Calado (jsc\@uninova.pt)
 
-*Document version*: 3.1.1 – 2019-08-28
+*Document version*: 3.2.0 – 2019-12-12
 
 ----
 
